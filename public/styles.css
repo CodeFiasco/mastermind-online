@@ -1,0 +1,155 @@
+html {
+  min-height: 100%;
+  background: #D09E88;
+}
+
+.game-board {
+  width: 230px;
+  height: 520px;
+  margin: 0 auto;
+  border: 5px solid #534847;
+  background: #CE6D39;
+  border-radius: 1.5em;
+}
+
+.game-board .game-guesses {
+  padding: 5px 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.game-board .game-guesses li {
+  width: 100%;
+  display: block;
+  height: 8.8%;
+}
+
+.game-board .game-guesses li .color-guess {
+  width: 35px;
+  height: 35px;
+  display: block;
+  float: left;
+  border-radius: 50%;
+  border: 2px solid #534847;
+  margin-left: 5px;
+}
+
+.game-board .game-guesses li.code {
+  width: 181px;
+  height: 45px;
+  padding: 5px 0 0;
+  background: #44633F;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 2em;
+}
+
+.game-board .game-guesses li.code .reveal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #44633F;
+  animation: reveal-effect 1.5s ease-in-out forwards;
+  border-radius: 2em;
+}
+
+.game-board .game-guesses li .pin-wrapper {
+  width: 39px;
+  height: 39px;
+  float: left;
+  margin-left: 10px;
+}
+
+.game-board .game-guesses li .pin-wrapper .pin {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #534847;
+  display: block;
+  float: left;
+  margin: 1px;
+  border-radius: 50%;
+}
+
+.panel-wrapper {
+  width: 270px;
+  padding: 5px;
+  border: 5px solid #534847;
+  margin: 20px auto;
+  background: #44633F;
+}
+
+.panel-wrapper button {
+  width: 35px;
+  height: 35px;
+  display: block;
+  float: left;
+  border-radius: 50%;
+  margin: 0 5px 10px;
+  border: none;
+}
+
+.panel-wrapper button.clear-button, .panel-wrapper .submit-button, .panel-wrapper .new-button {
+  width: 100px;
+  height: 30px;
+  border-radius: 0;
+  margin: 0 17px;
+  background: #aaa;
+  border: none;
+}
+
+.panel-wrapper .new-button {
+  display: block;
+  margin: 10px auto 0;
+  line-height: 30px;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+}
+
+.hidden-form {
+  position: absolute;
+  top: -1000px;
+}
+
+.color-0 {
+  background: #30A9DE;
+}
+
+.color-1 {
+  background: #EFDC05;
+}
+
+.color-2 {
+  background: #E53A40;
+}
+
+.color-3 {
+  background: #75D701;
+}
+
+.color-4 {
+  background: #f100e5;
+}
+
+.color-5 {
+  background: #ff5f2e;
+}
+
+.pin-2 {
+  background: #0a0a0a;
+}
+
+.pin-1 {
+  background: #fafafa;
+}
+
+@keyframes reveal-effect {
+  0% {
+    height: 100%;
+  }
+  100% {
+    height: 0;
+  }
+}

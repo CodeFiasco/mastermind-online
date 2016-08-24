@@ -1,0 +1,141 @@
+// Color Palette
+$board: #CE6D39
+$border: #534847
+
+// Colors for the game
+$color-0: #30A9DE
+$color-1: #EFDC05
+$color-2: #E53A40
+$color-3: #75D701
+$color-4: #f100e5
+$color-5: #ff5f2e
+$correct-place: #0a0a0a
+$wrong-place: #fafafa
+$hide-color: #44633F
+
+html
+  min-height: 100%
+  background: #D09E88
+
+.game-board
+  width: 230px
+  height: 520px
+  margin: 0 auto
+  border: 5px solid $border
+  background: $board
+  border-radius: 1.5em
+
+  .game-guesses
+    padding: 5px 0
+    margin: 0
+    height: 100%
+    width: 100%
+
+    li
+      width: 100%
+      display: block
+      height: 8.8%
+
+      .color-guess
+        width: 35px
+        height: 35px
+        display: block
+        float: left
+        border-radius: 50%
+        border: 2px solid $border
+        margin-left: 5px
+
+      &.code
+        width: 181px
+        height: 45px
+        padding: 5px 0 0
+        background: $hide-color
+        position: relative
+        margin: 0 auto
+        border-radius: 2em
+
+        .reveal
+          position: absolute
+          top: 0
+          left: 0
+          width: 100%
+          background: $hide-color
+          animation: reveal-effect 1.5s ease-in-out forwards
+          border-radius: 2em
+
+      .pin-wrapper
+        width: 39px
+        height: 39px
+        float: left
+        margin-left: 10px
+
+        .pin
+          width: 15px
+          height: 15px
+          border: 1px solid $border
+          display: block
+          float: left
+          margin: 1px
+          border-radius: 50%
+
+.panel-wrapper
+  width: 270px
+  padding: 5px
+  border: 5px solid $border
+  margin: 20px auto
+  background: $hide-color
+
+  button
+    width: 35px
+    height: 35px
+    display: block
+    float: left
+    border-radius: 50%
+    margin: 0 5px 10px
+    border: none
+
+  button.clear-button, .submit-button, .new-button
+    width: 100px
+    height: 30px
+    border-radius: 0
+    margin: 0 17px
+    background: #aaa
+    border: none
+
+  .new-button
+    display: block
+    margin: 10px auto 0
+    line-height: 30px
+    text-align: center
+    text-decoration: none
+    color: #000
+
+
+
+.hidden-form
+  position: absolute
+  top: -1000px
+
+.color-0
+  background: $color-0
+.color-1
+  background: $color-1
+.color-2
+  background: $color-2
+.color-3
+  background: $color-3
+.color-4
+  background: $color-4
+.color-5
+  background: $color-5
+
+.pin-2
+  background: $correct-place
+.pin-1
+  background: $wrong-place
+
+@keyframes reveal-effect
+  0%
+    height: 100%
+  100%
+    height: 0

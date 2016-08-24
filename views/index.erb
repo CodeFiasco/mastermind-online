@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mastermind</title>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <!--<h1>Mastermind</h1>-->
+    <div class="game-board">
+      <ol class="game-guesses">
+        <% session[:guesses].each_with_index do |guess, idx| %>
+          <li class="guess">
+            <% guess.each do |color| %>
+              <span class="color-guess color-<%= color %>"></span>
+            <% end %>
+            <div class="pin-wrapper">
+              <% session[:results][idx].each do |pin| %>
+                <span class="pin pin-<%= pin %>"></span>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+        <% if session[:guesses].length < 10 %>
+          <li class="guess" id="<%= 'active' unless session[:end?] %>">
+            <% 4.times do %>
+              <span class="color-guess"></span>
+            <% end %>
+            <div class="pin-wrapper">
+              <% 4.times do %>
+                <span class="pin"></span>
+              <% end %>
+            </div>
+          </li>
+          <% (10 - session[:guesses].length - 1).times do %>
+            <li class="guess">
+              <% 4.times do %>
+                <span class="color-guess"></span>
+              <% end %>
+              <div class="pin-wrapper">
+                <% 4.times do %>
+                  <span class="pin"></span>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+        <% if session[:end?] %>
+          <li class="guess code">
+            <div class="reveal"></div>
+            <% session[:code].each do |color| %>
+              <span class="color-guess color-<%= color %>"></span>
+            <% end %>
+          </li>
+        <% else %>
+          <li class="code hidden"></li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="panel-wrapper">
+      <button class="color-0" value="0" onclick="insertColor(this)"></button>
+      <button class="color-1" value="1" onclick="insertColor(this)"></button>
+      <button class="color-2" value="2" onclick="insertColor(this)"></button>
+      <button class="color-3" value="3" onclick="insertColor(this)"></button>
+      <button class="color-4" value="4" onclick="insertColor(this)"></button>
+      <button class="color-5" value="5" onclick="insertColor(this)"></button>
+      <button class="clear-button" onclick="clearColors()">Delete</button>
+      <input type="submit" class="submit-button" form="submit-guess" value="Submit">
+      <a href="/new" class="new-button">New Game</a>
+    </div>
+    <form method="POST" class="hidden-form" id="submit-guess">
+      <input type="text" name="color_0" id="color-0">
+      <input type="text" name="color_1" id="color-1">
+      <input type="text" name="color_2" id="color-2">
+      <input type="text" name="color_3" id="color-3">
+    </form>
+  </body>
+  <script type="text/javascript">
+    // Array to store input colors
+    var inputColors = []
+
+    function insertColor ( button ) {
+      if ( inputColors.length < 4 ) {
+        // Get the value of the clicked button
+        var value = button.getAttribute( 'value' ),
+        // Get the array with the pins of the active selection
+            pins = document.getElementById( 'active' )
+                           .getElementsByClassName( 'color-guess' )
+
+        // Add the color class to the next pin
+        pins[ inputColors.length ].className += ' color-' + value
+
+        // Insert the value in the correspondent input
+        document.getElementById( 'color-' + inputColors.length )
+                .value = value
+
+        // Insert the new value in the array of colors
+        inputColors.push( value )
+      }
+    }
+
+    function clearColors () {
+      // Empty the array of color
+      inputColors = []
+
+      // Clear all inputs
+      document.getElementById( 'color-0' ).value = ''
+      document.getElementById( 'color-1' ).value = ''
+      document.getElementById( 'color-2' ).value = ''
+      document.getElementById( 'color-3' ).value = ''
+
+      // Clear pins in active selection
+      pins = document.getElementById( 'active' )
+                     .getElementsByClassName( 'color-guess' )
+      pins[0].className = 'color-guess'
+      pins[1].className = 'color-guess'
+      pins[2].className = 'color-guess'
+      pins[3].className = 'color-guess'
+    }
+  </script>
+</html>
